@@ -36,13 +36,19 @@ public class UsuarioEntity {
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private final List<ValoracionjuegoEntity> valoracionjuego;
 
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private final List<ComentariojuegoEntity> comentariojuego;
+
     public UsuarioEntity() {
         this.valoracionjuego = new ArrayList<>();
+        this.comentariojuego = new ArrayList<>();
     }
 
     public UsuarioEntity(Long id){
         this.id = id;
         this.valoracionjuego = new ArrayList<>();
+        this.comentariojuego = new ArrayList<>();
+
     }
 
     public Long getId() {
@@ -81,5 +87,8 @@ public class UsuarioEntity {
         return valoracionjuego.size();
     }
     
+    public int getComentariojuego() {
+        return comentariojuego.size();
+    }
 
 }

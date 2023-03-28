@@ -38,6 +38,8 @@ public class ComentariojuegoEntity {
     @JoinColumn(name="id_comentariojuego")
     private ComentariojuegoEntity comentariojuego;
 
+ 
+
 
     public Long getId() {
         return id;

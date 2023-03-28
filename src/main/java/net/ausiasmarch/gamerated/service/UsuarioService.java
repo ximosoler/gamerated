@@ -24,7 +24,10 @@ public class UsuarioService {
     }
 
     public Page<UsuarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipousuario) {
-        return null;
+        Page<UsuarioEntity> oPage = null;
+
+        oPage = oUsuarioRepository.findAll(oPageable);
+        return oPage;
     }
 
     public Long create(UsuarioEntity oNewUserEntity) {
