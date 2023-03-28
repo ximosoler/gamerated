@@ -3,11 +3,12 @@ package net.ausiasmarch.gamerated.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.gamerated.entity.UsuarioEntity;
 import net.ausiasmarch.gamerated.exception.ResourceNotFoundException;
 import net.ausiasmarch.gamerated.repository.UsuarioRepository;
-
+@Service
 public class UsuarioService {
 
     @Autowired

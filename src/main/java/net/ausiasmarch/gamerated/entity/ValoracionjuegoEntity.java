@@ -32,17 +32,9 @@ public class ValoracionjuegoEntity {
     @JoinColumn(name="id_juego")
     private JuegoEntity juego;
 
-    @OneToMany(mappedBy = "valoracionjuego", fetch = FetchType.LAZY)
-    private final List<UsuarioEntity> usuario;
-
-    public ValoracionjuegoEntity() {
-        this.usuario = new ArrayList<>();
-    }
-
-    public ValoracionjuegoEntity(Long id){
-        this.id = id;
-        this.usuario = new ArrayList<>();
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_usuario")
+    private UsuarioEntity usuario;
 
     public Long getId() {
         return id;
@@ -68,8 +60,13 @@ public class ValoracionjuegoEntity {
         this.juego = juego;
     }
 
-    public int getUsuario() {
-        return usuario.size();
+    public UsuarioEntity getUsuario() {
+        return usuario;
     }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
     
 }

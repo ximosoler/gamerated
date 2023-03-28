@@ -8,8 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,10 +33,6 @@ public class UsuarioEntity {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String pass;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_usuario")
-    private ComentariojuegoEntity comentariojuego;
-
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private final List<ValoracionjuegoEntity> valoracionjuego;
 
@@ -80,13 +75,6 @@ public class UsuarioEntity {
 
     public void setTipocuenta(String tipocuenta) {
         this.tipocuenta = tipocuenta;
-    }
-
-    public ComentariojuegoEntity getComentariojuegoEntity() {
-        return comentariojuego;
-    }
-    public void setComentariojuego(ComentariojuegoEntity comentariojuego) {
-        this.comentariojuego = comentariojuego;
     }
 
     public int getValoracionjuego() {

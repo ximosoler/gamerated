@@ -2,9 +2,10 @@ package net.ausiasmarch.gamerated.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.gamerated.entity.JuegoEntity;
-
+@Service
 public class JuegoService {
 
     public JuegoEntity get(Long id) {
