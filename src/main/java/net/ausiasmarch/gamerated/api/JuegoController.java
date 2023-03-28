@@ -41,7 +41,7 @@ public class JuegoController {
     }
 
     
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Page<JuegoEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter) {

@@ -1,18 +1,25 @@
 package net.ausiasmarch.gamerated.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import net.ausiasmarch.gamerated.entity.UsuarioEntity;
+import net.ausiasmarch.gamerated.exception.ResourceNotFoundException;
+import net.ausiasmarch.gamerated.repository.UsuarioRepository;
 
 public class UsuarioService {
 
+    @Autowired
+    UsuarioRepository oUsuarioRepository;
+
     public UsuarioEntity get(Long id) {
-        return null;
+        return oUsuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id " + id + " not exist"));
     }
 
     public Long count() {
-        return null;
+        return oUsuarioRepository.count();
     }
 
     public Page<UsuarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipousuario) {
@@ -38,5 +45,5 @@ public class UsuarioService {
     public Object generateSome(Integer amount) {
         return null;
     }
-    
+
 }

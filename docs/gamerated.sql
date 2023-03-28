@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-03-2023 a las 18:30:25
+-- Tiempo de generación: 28-03-2023 a las 16:33:53
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `juego` (
   `titulo` varchar(255) NOT NULL,
   `desarrolladora` varchar(255) NOT NULL,
   `plataforma` varchar(255) NOT NULL,
-  `fechasalida` varchar(255) NOT NULL,
+  `fechasalida` datetime NOT NULL,
   `genero` varchar(255) NOT NULL,
   `duracion` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -61,6 +61,7 @@ CREATE TABLE `juego` (
 CREATE TABLE `usuario` (
   `id` bigint(20) NOT NULL,
   `nick` varchar(255) NOT NULL,
+  `pass` varchar(1024) NOT NULL,
   `tipocuenta` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
