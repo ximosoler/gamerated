@@ -1,39 +1,68 @@
 package net.ausiasmarch.gamerated.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.ausiasmarch.gamerated.entity.ComentariojuegoEntity;
+import net.ausiasmarch.gamerated.exception.ResourceNotFoundException;
+import net.ausiasmarch.gamerated.repository.ComentariojuegoRepository;
 @Service
 public class ComentariojuegoService {
 
+    @Autowired
+    ComentariojuegoRepository oComentariojuegoRepository;
+
+    public void validate(Long id) {
+        if (!oComentariojuegoRepository.existsById(id)) {
+            throw new ResourceNotFoundException("id " + id + " doesn't exist");
+        }
+    }
+
     public ComentariojuegoEntity get(Long id) {
-        return null;
+        return oComentariojuegoRepository.findById(id).get();      
     }
 
     public Long count() {
-        return null;
+        return oComentariojuegoRepository.count();
     }
 
     public Page<ComentariojuegoEntity> getPage(Pageable oPageable, String strFilter) {
-        return null;
+        Page<ComentariojuegoEntity> oPage = null;
+
+        oPage = oComentariojuegoRepository.findAll(oPageable);
+        return oPage;
     }
 
-    public Long create(ComentariojuegoEntity oNewUserEntity) {
-        return null;
+
+
+    public Long create(ComentariojuegoEntity oNewComentariojuegoEntity) {
+        oNewComentariojuegoEntity.setId(0L);
+    /*  oNewComentariojuegoEntity.setTexto();
+        oNewComentariojuegoEntity.setFechahora();
+        oNewComentariojuegoEntity.setUsuario();
+        oNewComentariojuegoEntity.setJuego();
+        oNewComentariojuegoEntity.setComentariojuego();*/
+        return oComentariojuegoRepository.save(oNewComentariojuegoEntity).getId();
     }
 
-    public Long update(ComentariojuegoEntity oUserEntity) {
-        return null;
+    
+    @Transactional
+    public Long update(ComentariojuegoEntity oComentariojuegoEntity) {
+        validate(oComentariojuegoEntity.getId());
+        return oComentariojuegoRepository.save(oComentariojuegoEntity).getId();
     }
+
 
     public Long delete(Long id) {
-        return null;
+       
+      oComentariojuegoRepository.existsById(id);
+      oComentariojuegoRepository.deleteById(id);
+           
+       return id;
+            
     }
 
-    public ComentariojuegoEntity generate() {
-        return null;
-    }
-    
 }

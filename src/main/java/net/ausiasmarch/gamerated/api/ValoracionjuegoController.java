@@ -63,10 +63,11 @@ public class ValoracionjuegoController {
         return new ResponseEntity<Long>(oValoracionjuegoService.delete(id), HttpStatus.OK);
     }
 
-    @PostMapping("/generate")
+  /*   @PostMapping("/generate")
     public ResponseEntity<ValoracionjuegoEntity> generate() {
         return new ResponseEntity<ValoracionjuegoEntity>(oValoracionjuegoService.generate(), HttpStatus.OK);
     }
+    */
 
 
 }

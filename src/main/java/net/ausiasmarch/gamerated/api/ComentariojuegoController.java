@@ -63,10 +63,10 @@ public class ComentariojuegoController {
         return new ResponseEntity<Long>(oComentariojuegoService.delete(id), HttpStatus.OK);
     }
 
-    @PostMapping("/generate")
+  /*  @PostMapping("/generate")
     public ResponseEntity<ComentariojuegoEntity> generate() {
         return new ResponseEntity<ComentariojuegoEntity>(oComentariojuegoService.generate(), HttpStatus.OK);
-    }
+    } */
 
 
 }
