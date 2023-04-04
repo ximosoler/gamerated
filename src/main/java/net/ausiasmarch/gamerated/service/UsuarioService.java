@@ -16,6 +16,8 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository oUsuarioRepository;
+
+
     public void validate(Long id) {
         if (!oUsuarioRepository.existsById(id)) {
             throw new ResourceNotFoundException("id " + id + " not exist");
@@ -76,10 +78,17 @@ public class UsuarioService {
     }
 
     private UsuarioEntity generateRandomUser() {
+       
         UsuarioEntity oUsuarioEntity = new UsuarioEntity();
         oUsuarioEntity.setNick(generateNick());
         oUsuarioEntity.setPass(GAMERATED_DEFAULT_PASSWORD);
-       
+        
+        if(RandomHelper.getRandomInt(1, 2) == 1){
+            oUsuarioEntity.setTipocuenta("Admin");
+        }else{
+            oUsuarioEntity.setTipocuenta("User");
+        }
+        
         return oUsuarioEntity;
     }
 

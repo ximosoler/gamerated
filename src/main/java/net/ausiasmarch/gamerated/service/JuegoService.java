@@ -40,12 +40,7 @@ public class JuegoService {
 
     public Long create(JuegoEntity oNewJuegoEntity) {
         oNewJuegoEntity.setId(0L);
-       /* oNewJuegoEntity.setTitulo();
-        oNewJuegoEntity.setDesarrolladora();
-        oNewJuegoEntity.setPlataforma();
-        oNewJuegoEntity.setFechasalida();
-        oNewJuegoEntity.setGenero();
-        oNewJuegoEntity.setDuracion();*/
+        
 
         return oJuegoRepository.save(oNewJuegoEntity).getId();
     } 

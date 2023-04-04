@@ -49,13 +49,13 @@ public class JuegoController {
     }
 
     @PostMapping
-    public ResponseEntity<Long> create(@RequestBody JuegoEntity oNewUserEntity) {
-        return new ResponseEntity<Long>(oJuegoService.create(oNewUserEntity), HttpStatus.OK);
+    public ResponseEntity<Long> create(@RequestBody JuegoEntity oJuegoEntity) {
+        return new ResponseEntity<Long>(oJuegoService.create(oJuegoEntity), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Long> update(@RequestBody JuegoEntity oUserEntity) {
-        return new ResponseEntity<Long>(oJuegoService.update(oUserEntity), HttpStatus.OK);
+    public ResponseEntity<Long> update(@RequestBody JuegoEntity oJuegoEntity) {
+        return new ResponseEntity<Long>(oJuegoService.update(oJuegoEntity), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
