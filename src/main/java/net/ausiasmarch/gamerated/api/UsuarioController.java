@@ -1,6 +1,5 @@
 package net.ausiasmarch.gamerated.api;
 
-
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,8 +44,8 @@ public class UsuarioController {
     public ResponseEntity<Page<UsuarioEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(name = "tipousuario", required = false) Long tipousuario) {
-        return new ResponseEntity<Page<UsuarioEntity>>(oUsuarioService.getPage(oPageable, strFilter, tipousuario), HttpStatus.OK);
+            @RequestParam(name = "tipocuenta", required = false) String tipocuenta) {
+        return new ResponseEntity<Page<UsuarioEntity>>(oUsuarioService.getPage(oPageable, strFilter, tipocuenta), HttpStatus.OK);
     }
 
     @PostMapping

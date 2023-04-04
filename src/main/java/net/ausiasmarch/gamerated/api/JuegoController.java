@@ -39,7 +39,6 @@ public class JuegoController {
     public ResponseEntity<Long> count() {
         return new ResponseEntity<Long>(oJuegoService.count(), HttpStatus.OK);
     }
-
     
     @GetMapping
     public ResponseEntity<Page<JuegoEntity>> getPage(

@@ -11,12 +11,12 @@ import net.ausiasmarch.gamerated.entity.UsuarioEntity;
 import net.ausiasmarch.gamerated.exception.ResourceNotFoundException;
 import net.ausiasmarch.gamerated.helper.RandomHelper;
 import net.ausiasmarch.gamerated.repository.UsuarioRepository;
+
 @Service
 public class UsuarioService {
 
     @Autowired
     UsuarioRepository oUsuarioRepository;
-
 
     public void validate(Long id) {
         if (!oUsuarioRepository.existsById(id)) {
@@ -26,8 +26,9 @@ public class UsuarioService {
 
     private final String GAMERATED_DEFAULT_PASSWORD = "4298f843f830fb3cc13ecdfe1b2cf10f51f929df056d644d1bca73228c5e8f64";
 
-    private final String[] nicks = {"Jose", "Mark", "Elen", "Toni", "Hector", "Joseppe", "Laura", "Vika", "Sergio",
-    "Javi", "Marcos", "Pere", "Daniel", "Josfe", "Havi", "Sergio", "Aaron", "Rafa", "Lionel", "Borja", "Ximo", "Mar"};
+    private final String[] nicks = { "Jose", "Mark", "Elen", "Toni", "Hector", "Joseppe", "Laura", "Vika", "Sergio",
+            "Javi", "Marcos", "Pere", "Daniel", "Josfe", "Havi", "Sergio", "Aaron", "Rafa", "Lionel", "Borja", "Ximo",
+            "Mar" };
 
     public UsuarioEntity get(Long id) {
         return oUsuarioRepository.findById(id)
@@ -38,10 +39,22 @@ public class UsuarioService {
         return oUsuarioRepository.count();
     }
 
-    public Page<UsuarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipousuario) {
+    public Page<UsuarioEntity> getPage(Pageable oPageable, String strFilter, String strTipocuenta) {
         Page<UsuarioEntity> oPage = null;
-
-        oPage = oUsuarioRepository.findAll(oPageable);
+        if (strFilter == null || strFilter.equals("") || strFilter.trim().equals("")) {
+            if (strTipocuenta == null || strTipocuenta.equals("") || strTipocuenta.trim().equals("")) {
+                oPage = oUsuarioRepository.findAll(oPageable);
+            } else {
+                oPage = oUsuarioRepository.findByTipocuentaIgnoreCase(strTipocuenta, oPageable);
+            }
+        } else {
+            if (strTipocuenta == null || strTipocuenta.equals("") || strTipocuenta.trim().equals("")) {
+                oPage = oUsuarioRepository.findByNickIgnoreCaseContaining(strFilter, oPageable);
+            } else {
+                oPage = oUsuarioRepository.findByNickIgnoreCaseContainingAndTipocuentaIgnoreCase(strFilter, strTipocuenta,
+                        oPageable);
+            }
+        }
         return oPage;
     }
 
@@ -50,6 +63,7 @@ public class UsuarioService {
         oNewUsuarioEntity.setPass(GAMERATED_DEFAULT_PASSWORD);
         return oUsuarioRepository.save(oNewUsuarioEntity).getId();
     }
+
     @Transactional
     public Long update(UsuarioEntity oUsuarioEntity) {
         validate(oUsuarioEntity.getId());
@@ -63,7 +77,7 @@ public class UsuarioService {
         UsuarioEntity oUsuarioEntity = oUsuarioRepository.findById(oUpdatedUserEntity.getId()).get();
         oUsuarioEntity.setNick(oUpdatedUserEntity.getNick());
         oUsuarioEntity.setPass(oUpdatedUserEntity.getPass());
-        oUsuarioEntity.setTipocuenta(oUpdatedUserEntity.getTipocuenta());     
+        oUsuarioEntity.setTipocuenta(oUpdatedUserEntity.getTipocuenta());
         return oUsuarioRepository.save(oUsuarioEntity);
     }
 
@@ -78,17 +92,17 @@ public class UsuarioService {
     }
 
     private UsuarioEntity generateRandomUser() {
-       
+
         UsuarioEntity oUsuarioEntity = new UsuarioEntity();
         oUsuarioEntity.setNick(generateNick());
         oUsuarioEntity.setPass(GAMERATED_DEFAULT_PASSWORD);
-        
-        if(RandomHelper.getRandomInt(1, 2) == 1){
+
+        if (RandomHelper.getRandomInt(1, 2) == 1) {
             oUsuarioEntity.setTipocuenta("Admin");
-        }else{
+        } else {
             oUsuarioEntity.setTipocuenta("User");
         }
-        
+
         return oUsuarioEntity;
     }
 
