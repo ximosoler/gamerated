@@ -35,7 +35,6 @@ public class JuegoService {
             "Resident Evil: Village" };     
     private final String[]  plataforma_Random = { "Nintendo Switch", "Play Station 4", "Play Station 5", "Xbox One", "Xbox Series X y Series S", "Play Station 3", "Xbox 360", "PC/MAC" };    
 
-    private final String[] fecha_Random = {"26 de octubre de 2018", "18 de mayo de 2015", "25 de febrero de 2022", "7 de febrero de 2023", " 9 de noviembre de 2022", "11 de noviembre de 2011","19 de octubre de 2010", "13 de mayo de 1998"};
 
     private final String[]  genero_Random = { "Acción", "Disparos", "Estrategia", "Simulación", "Rol", "Deporte", "Aventura", "Lucha", "Mundo Abierto" };
 
