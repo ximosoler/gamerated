@@ -28,13 +28,14 @@ public class JuegoEntity {
 
     
 
-    private String[] titulo;
-    private String[] desarrolladora;
-    private String[] plataforma;
+    private String titulo;
+    private String desarrolladora;
+    private String plataforma;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime fechasalida;
-    private String[] genero;
+
+    private String genero;
     private int duracion;
 
 
@@ -64,27 +65,27 @@ public class JuegoEntity {
         this.id = id;
     }
 
-    public String[] getTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String[] titulo) {
-        this.titulo = titulo;
+    public void setTitulo(String juegoEntity) {
+        this.titulo = juegoEntity;
     }
 
-    public String[] getDesarrolladora() {
+    public String getDesarrolladora() {
         return desarrolladora;
     }
 
-    public void setDesarrolladora(String[] desarrolladora) {
+    public void setDesarrolladora(String desarrolladora) {
         this.desarrolladora = desarrolladora;
     }
 
-    public String[] getPlataforma() {
+    public String getPlataforma() {
         return plataforma;
     }
 
-    public void setPlataforma(String[] plataforma) {
+    public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
 
@@ -96,11 +97,11 @@ public class JuegoEntity {
         this.fechasalida = fechasalida;
     }
     
-    public String[] getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(String[] genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

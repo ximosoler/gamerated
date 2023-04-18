@@ -19,6 +19,8 @@ public class JuegoService {
 
     @Autowired
     JuegoRepository oJuegoRepository;
+    @Autowired
+    JuegoService oJuegoService;
 
     public void validate(Long id) {
         if (!oJuegoRepository.existsById(id)) {
@@ -102,16 +104,33 @@ public class JuegoService {
     private JuegoEntity generateRandomJuego() {
 
         JuegoEntity oJuegoEntity = new JuegoEntity();
-        oJuegoEntity.setTitulo(juego_Random);
-        oJuegoEntity.setDesarrolladora(desarrolladora_Random);
-        oJuegoEntity.setPlataforma(plataforma_Random);
+        oJuegoEntity.setTitulo(generateTitulo());
+        oJuegoEntity.setDesarrolladora(generateDesarrolladora());
+        oJuegoEntity.setPlataforma(generatePlataforma());
         oJuegoEntity.setFechasalida(RandomHelper.getRadomDateTime());
-        oJuegoEntity.setGenero(genero_Random);
+        oJuegoEntity.setGenero(generateGenero());
         oJuegoEntity.setDuracion(RandomHelper.getRandomInt(2, 100));
 
         
         return oJuegoEntity;
     }
+
+    private String generateTitulo() {
+        return juego_Random[RandomHelper.getRandomInt(0, juego_Random.length - 1)].toLowerCase();
+    }
+    
+    private String generateDesarrolladora() {
+        return desarrolladora_Random[RandomHelper.getRandomInt(0, desarrolladora_Random.length - 1)].toLowerCase();
+    }
+
+    private String generatePlataforma() {
+        return plataforma_Random[RandomHelper.getRandomInt(0, plataforma_Random.length - 1)].toLowerCase();
+    }
+
+    private String generateGenero() {
+        return genero_Random[RandomHelper.getRandomInt(0, genero_Random.length - 1)].toLowerCase();
+    }
+    
 
     public JuegoEntity getOneRandom() {        
        
