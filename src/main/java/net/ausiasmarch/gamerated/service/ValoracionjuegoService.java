@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.ausiasmarch.gamerated.entity.ValoracionjuegoEntity;
 import net.ausiasmarch.gamerated.exception.ResourceNotFoundException;
+import net.ausiasmarch.gamerated.helper.RandomHelper;
 import net.ausiasmarch.gamerated.repository.ValoracionjuegoRepository;
 @Service
 public class ValoracionjuegoService {
@@ -15,12 +16,19 @@ public class ValoracionjuegoService {
     @Autowired
     ValoracionjuegoRepository oValoracionjuegoRepository;
 
+    @Autowired
+    UsuarioService oUsuarioService;
+
+    @Autowired
+    JuegoService oJuegoService;
+
     public void validate(Long id) {
         if (!oValoracionjuegoRepository.existsById(id)) {
             throw new ResourceNotFoundException("id " + id + " doesn't exist");
         }
     }
 
+   
     public ValoracionjuegoEntity get(Long id) {
         return oValoracionjuegoRepository.findById(id).get();      
     }
@@ -29,23 +37,22 @@ public class ValoracionjuegoService {
         return oValoracionjuegoRepository.count();
     }
 
-    public Page<ValoracionjuegoEntity> getPage(Pageable oPageable, String strFilter) {
+    public Page<ValoracionjuegoEntity> getPage(Pageable oPageable, String strFilter, int id_usuario, int id_juego, int nota) {
         Page<ValoracionjuegoEntity> oPage = null;
-
-        oPage = oValoracionjuegoRepository.findAll(oPageable);
+        if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+            oPage = oValoracionjuegoRepository.findAll(oPageable);
+        } else {
+            oPage = oValoracionjuegoRepository.findByUsuarioIgnoreCaseContaining(id_usuario, oPageable);
+        }
+        
         return oPage;
     }
 
 
 
-    public Long create(ValoracionjuegoEntity oNewValoracionjuegoEntity) {
-        oNewValoracionjuegoEntity.setId(0L);
-    /*  oNewValoracionjuegoEntity.setTexto();
-        oNewValoracionjuegoEntity.setFechahora();
-        oNewValoracionjuegoEntity.setUsuario();
-        oNewValoracionjuegoEntity.setJuego();
-        oNewValoracionjuegoEntity.setComentariojuego();*/
-        return oValoracionjuegoRepository.save(oNewValoracionjuegoEntity).getId();
+    public Long create(ValoracionjuegoEntity oValoracionjuegoEntity) {
+        oValoracionjuegoEntity.setId(0L);
+        return oValoracionjuegoRepository.save(oValoracionjuegoEntity).getId();
     }
 
     
@@ -64,5 +71,21 @@ public class ValoracionjuegoService {
        return id;
             
     }
+    public ValoracionjuegoEntity generate() {
+        return oValoracionjuegoRepository.save(generateRandomValoracion());
+    }
 
+    private ValoracionjuegoEntity generateRandomValoracion() {
+
+        ValoracionjuegoEntity oValoracionjuegoEntity = new ValoracionjuegoEntity();
+        oValoracionjuegoEntity.setUsuario(oUsuarioService.getOneRandom());
+        oValoracionjuegoEntity.setJuego(oJuegoService.getOneRandom());
+        oValoracionjuegoEntity.setNota(RandomHelper.getRandomInt(0, 10));
+       
+
+        
+        return oValoracionjuegoEntity;
+    }
 }
+
+

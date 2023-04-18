@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import net.ausiasmarch.gamerated.entity.ValoracionjuegoEntity;
 import net.ausiasmarch.gamerated.service.ValoracionjuegoService;
 
@@ -44,8 +43,11 @@ public class ValoracionjuegoController {
     @GetMapping("")
     public ResponseEntity<Page<ValoracionjuegoEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
-            @RequestParam(name = "filter", required = false) String strFilter) {
-        return new ResponseEntity<Page<ValoracionjuegoEntity>>(oValoracionjuegoService.getPage(oPageable, strFilter), HttpStatus.OK);
+            @RequestParam(name = "filter", required = false) String strFilter,
+            @RequestParam(name = "id_usuario", required = false) int id_usuario,
+            @RequestParam(name = "id_juego", required = false) int id_juego,
+            @RequestParam(name = "nota", required = false) int nota) {
+        return new ResponseEntity<Page<ValoracionjuegoEntity>>(oValoracionjuegoService.getPage(oPageable, strFilter, id_usuario, id_juego, nota), HttpStatus.OK);
     }
 
     @PostMapping
@@ -63,11 +65,11 @@ public class ValoracionjuegoController {
         return new ResponseEntity<Long>(oValoracionjuegoService.delete(id), HttpStatus.OK);
     }
 
-  /*   @PostMapping("/generate")
+     @PostMapping("/generate")
     public ResponseEntity<ValoracionjuegoEntity> generate() {
         return new ResponseEntity<ValoracionjuegoEntity>(oValoracionjuegoService.generate(), HttpStatus.OK);
     }
-    */
+    
 
 
 }

@@ -44,8 +44,11 @@ public class ComentariojuegoController {
     @GetMapping("")
     public ResponseEntity<Page<ComentariojuegoEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
-            @RequestParam(name = "filter", required = false) String strFilter) {
-        return new ResponseEntity<Page<ComentariojuegoEntity>>(oComentariojuegoService.getPage(oPageable, strFilter), HttpStatus.OK);
+            @RequestParam(name = "filter", required = false) String strFilter,
+            @RequestParam(name = "id_usuario", required = false) int id_usuario,
+            @RequestParam(name = "id_juego", required = false) int id_juego,
+            @RequestParam(name = "id_comentariojuego", required = false) int id_comentariojuego) {
+        return new ResponseEntity<Page<ComentariojuegoEntity>>(oComentariojuegoService.getPage(oPageable, strFilter, id_usuario, id_juego, id_comentariojuego), HttpStatus.OK);
     }
 
     @PostMapping
@@ -63,10 +66,10 @@ public class ComentariojuegoController {
         return new ResponseEntity<Long>(oComentariojuegoService.delete(id), HttpStatus.OK);
     }
 
-  /*  @PostMapping("/generate")
+    @PostMapping("/generate")
     public ResponseEntity<ComentariojuegoEntity> generate() {
         return new ResponseEntity<ComentariojuegoEntity>(oComentariojuegoService.generate(), HttpStatus.OK);
-    } */
+    } 
 
 
 }

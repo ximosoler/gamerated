@@ -2,6 +2,8 @@ package net.ausiasmarch.gamerated.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +26,7 @@ public class UsuarioService {
         }
     }
 
-    private final String GAMERATED_DEFAULT_PASSWORD = "4298f843f830fb3cc13ecdfe1b2cf10f51f929df056d644d1bca73228c5e8f64";
+    private final String GAMERATED_DEFAULT_PASSWORD = "0775f0bfa1657cd14831c856d70fdca1a640a2f2488f515289f112c4701d0a64";
 
     private final String[] nicks = { "Jose", "Mark", "Elen", "Toni", "Hector", "Joseppe", "Laura", "Vika", "Sergio",
             "Javi", "Marcos", "Pere", "Daniel", "Josfe", "Havi", "Sergio", "Aaron", "Rafa", "Lionel", "Borja", "Ximo",
@@ -108,6 +110,14 @@ public class UsuarioService {
 
     private String generateNick() {
         return nicks[RandomHelper.getRandomInt(0, nicks.length - 1)].toLowerCase();
+    }
+
+    public UsuarioEntity getOneRandom() {        
+       
+            List<UsuarioEntity> usuarioList = oUsuarioRepository.findAll();
+            int iPosicion = RandomHelper.getRandomInt(0, (int) oUsuarioRepository.count() - 1);
+            return oUsuarioRepository.getById(usuarioList.get(iPosicion).getId());            
+        
     }
 
 }

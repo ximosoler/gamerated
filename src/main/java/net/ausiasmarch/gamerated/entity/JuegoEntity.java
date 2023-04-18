@@ -1,5 +1,6 @@
 package net.ausiasmarch.gamerated.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +28,14 @@ public class JuegoEntity {
 
     
 
-    private String titulo;
-    private String desarrolladora;
-    private String plataforma;
+    private String[] titulo;
+    private String[] desarrolladora;
+    private String[] plataforma;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private String fechasalida;
-    private String genero;
-    private String duracion;
+    private LocalDateTime fechasalida;
+    private String[] genero;
+    private int duracion;
 
 
     @OneToMany(mappedBy = "juego", fetch = FetchType.LAZY)
@@ -63,51 +64,51 @@ public class JuegoEntity {
         this.id = id;
     }
 
-    public String getTitulo() {
+    public String[] getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public void setTitulo(String[] titulo) {
         this.titulo = titulo;
     }
 
-    public String getDesarrolladora() {
+    public String[] getDesarrolladora() {
         return desarrolladora;
     }
 
-    public void setDesarrolladora(String desarrolladora) {
+    public void setDesarrolladora(String[] desarrolladora) {
         this.desarrolladora = desarrolladora;
     }
 
-    public String getPlataforma() {
+    public String[] getPlataforma() {
         return plataforma;
     }
 
-    public void setPlataforma(String plataforma) {
+    public void setPlataforma(String[] plataforma) {
         this.plataforma = plataforma;
     }
 
-    public String getFechasalida() {
+    public LocalDateTime getFechasalida() {
         return fechasalida;
     }
 
-    public void setFechasalida(String fechasalida) {
+    public void setFechasalida(LocalDateTime fechasalida) {
         this.fechasalida = fechasalida;
     }
     
-    public String getGenero() {
+    public String[] getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(String[] genero) {
         this.genero = genero;
     }
 
-    public String getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(String duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 

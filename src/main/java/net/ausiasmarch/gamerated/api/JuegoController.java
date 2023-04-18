@@ -43,8 +43,9 @@ public class JuegoController {
     @GetMapping
     public ResponseEntity<Page<JuegoEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
-            @RequestParam(name = "filter", required = false) String strFilter) {
-        return new ResponseEntity<Page<JuegoEntity>>(oJuegoService.getPage(oPageable, strFilter), HttpStatus.OK);
+            @RequestParam(name = "filter", required = false) String strFilter,
+            @RequestParam(name = "duracion", required = false) int duracion) {
+        return new ResponseEntity<Page<JuegoEntity>>(oJuegoService.getPage(oPageable, strFilter, duracion), HttpStatus.OK);
     }
 
     @PostMapping
@@ -62,10 +63,10 @@ public class JuegoController {
         return new ResponseEntity<Long>(oJuegoService.delete(id), HttpStatus.OK);
     }
 
-    /*@PostMapping("/generate")
+    @PostMapping("/generate")
     public ResponseEntity<JuegoEntity> generate() {
         return new ResponseEntity<JuegoEntity>(oJuegoService.generate(), HttpStatus.OK);
-    }*/
+    }
 
 
 }

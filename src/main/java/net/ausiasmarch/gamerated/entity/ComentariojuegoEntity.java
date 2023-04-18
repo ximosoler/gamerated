@@ -1,6 +1,8 @@
 package net.ausiasmarch.gamerated.entity;
 
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,8 +25,8 @@ public class ComentariojuegoEntity {
     private Long id;
 
     private String texto;
-    private String fechahora;
- 
+    private LocalDateTime fechahora;
+
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_usuario")
@@ -37,9 +39,6 @@ public class ComentariojuegoEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_comentariojuego")
     private ComentariojuegoEntity comentariojuego;
-
- 
-
 
     public Long getId() {
         return id;
@@ -57,11 +56,11 @@ public class ComentariojuegoEntity {
         this.texto = texto;
     }
 
-    public String getFechahora() {
+    public LocalDateTime getFechahora() {
         return fechahora;
     }
 
-    public void setFechahora(String fechahora) {
+    public void setFechahora(LocalDateTime fechahora) {
         this.fechahora = fechahora;
     }
 

@@ -22,7 +22,7 @@ public class ValoracionjuegoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nota;
+    private int nota;
  
     
     @ManyToOne(fetch = FetchType.EAGER)
@@ -41,11 +41,11 @@ public class ValoracionjuegoEntity {
         this.id = id;
     }
 
-    public String getNota() {
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(String nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 
