@@ -15,7 +15,6 @@ public interface ComentariojuegoRepository extends JpaRepository<Comentariojuego
 /* Page<ComentariojuegoEntity> findByFechahoraIgnoreCaseContaining(String fechahora, Pageable oPageable);
     Page<ComentariojuegoEntity> findByUsuarioIgnoreCaseContaining(int id_usuario, Pageable oPageable);
     Page<ComentariojuegoEntity> findByJuegoIgnoreCaseContaining(int id_juego, Pageable oPageable);
-    Page<ComentariojuegoEntity> findByComentarioIgnoreCaseContaining(int id_comentariojuego, Pageable oPageable);
     Page<ComentariojuegoEntity> findByUsuarioIgnoreCaseContainingAndJuegoIgnoreCaseContaining(int id_usuario, int id_juego, Pageable oPageable);*/ 
 
 }

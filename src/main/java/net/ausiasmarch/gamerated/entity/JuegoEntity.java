@@ -32,8 +32,9 @@ public class JuegoEntity {
     private String desarrolladora;
     private String plataforma;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDateTime fechasalida;
+    
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    //private LocalDateTime fechasalida;
 
     private String genero;
     private int duracion;
@@ -88,7 +89,7 @@ public class JuegoEntity {
     public void setPlataforma(String plataforma) {
         this.plataforma = plataforma;
     }
-
+/*
     public LocalDateTime getFechasalida() {
         return fechasalida;
     }
@@ -96,7 +97,7 @@ public class JuegoEntity {
     public void setFechasalida(LocalDateTime fechasalida) {
         this.fechasalida = fechasalida;
     }
-    
+*/    
     public String getGenero() {
         return genero;
     }

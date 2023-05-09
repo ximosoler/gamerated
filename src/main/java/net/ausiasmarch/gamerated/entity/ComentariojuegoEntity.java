@@ -25,7 +25,9 @@ public class ComentariojuegoEntity {
     private Long id;
 
     private String texto;
-    private LocalDateTime fechahora;
+
+
+    //private LocalDateTime fechahora;
 
     
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,9 +38,6 @@ public class ComentariojuegoEntity {
     @JoinColumn(name="id_juego")
     private JuegoEntity juego;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_comentariojuego")
-    private ComentariojuegoEntity comentariojuego;
 
     public Long getId() {
         return id;
@@ -55,7 +54,7 @@ public class ComentariojuegoEntity {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-
+/*
     public LocalDateTime getFechahora() {
         return fechahora;
     }
@@ -63,7 +62,7 @@ public class ComentariojuegoEntity {
     public void setFechahora(LocalDateTime fechahora) {
         this.fechahora = fechahora;
     }
-
+*/
     public UsuarioEntity getUsuario() {
         return usuario;
     }
@@ -78,12 +77,7 @@ public class ComentariojuegoEntity {
         this.juego = juego;
     }
 
-    public ComentariojuegoEntity getComentariojuego() {
-        return comentariojuego;
-    }
-    public void setComentariojuego(ComentariojuegoEntity comentariojuego) {
-        this.comentariojuego = comentariojuego;
-    }
+
 
     
 }

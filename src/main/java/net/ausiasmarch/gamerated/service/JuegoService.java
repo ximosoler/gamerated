@@ -72,7 +72,7 @@ public class JuegoService {
         oJuegoEntity.setTitulo(oldJuegoEntity.getTitulo());
         oJuegoEntity.setDesarrolladora(oldJuegoEntity.getDesarrolladora());
         oJuegoEntity.setPlataforma(oldJuegoEntity.getPlataforma());
-        oJuegoEntity.setFechasalida(oldJuegoEntity.getFechasalida());
+        //oJuegoEntity.setFechasalida(oldJuegoEntity.getFechasalida());
         oJuegoEntity.setGenero(oldJuegoEntity.getGenero());
         oJuegoEntity.setDuracion(oldJuegoEntity.getDuracion());
 
@@ -85,7 +85,7 @@ public class JuegoService {
         oJuegoEntity.setTitulo(oUpdatedJuegoEntity.getTitulo());
         oJuegoEntity.setDesarrolladora(oUpdatedJuegoEntity.getDesarrolladora());
         oJuegoEntity.setPlataforma(oUpdatedJuegoEntity.getPlataforma());
-        oJuegoEntity.setFechasalida(oUpdatedJuegoEntity.getFechasalida());
+        //oJuegoEntity.setFechasalida(oUpdatedJuegoEntity.getFechasalida());
         oJuegoEntity.setGenero(oUpdatedJuegoEntity.getGenero());
         oJuegoEntity.setDuracion(oUpdatedJuegoEntity.getDuracion());     
         return oJuegoRepository.save(oJuegoEntity);
@@ -107,7 +107,7 @@ public class JuegoService {
         oJuegoEntity.setTitulo(generateTitulo());
         oJuegoEntity.setDesarrolladora(generateDesarrolladora());
         oJuegoEntity.setPlataforma(generatePlataforma());
-        oJuegoEntity.setFechasalida(RandomHelper.getRadomDateTime());
+        //oJuegoEntity.setFechasalida(RandomHelper.getRadomDateTime());
         oJuegoEntity.setGenero(generateGenero());
         oJuegoEntity.setDuracion(RandomHelper.getRandomInt(2, 100));
 

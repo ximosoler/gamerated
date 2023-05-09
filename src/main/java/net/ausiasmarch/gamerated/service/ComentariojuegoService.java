@@ -45,8 +45,8 @@ public class ComentariojuegoService {
         return oComentariojuegoRepository.count();
     }
 
-    public Page<ComentariojuegoEntity> getPage(Pageable oPageable, String strFilter, int id_usuario, int id_juego,
-            int id_comentariojuego) {
+    public Page<ComentariojuegoEntity> getPage(Pageable oPageable, String strFilter, int id_usuario, int id_juego
+            ) {
         Page<ComentariojuegoEntity> oPage = null;
         if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
             oPage = oComentariojuegoRepository.findAll(oPageable);
@@ -81,10 +81,9 @@ public class ComentariojuegoService {
         ComentariojuegoEntity oNewComentariojuegoEntity = new ComentariojuegoEntity();
         oNewComentariojuegoEntity
                 .setTexto(comentario_Random[RandomHelper.getRandomInt(0, comentario_Random.length - 1)]);
-        oNewComentariojuegoEntity.setFechahora(RandomHelper.getRadomDateTime());
+        //oNewComentariojuegoEntity.setFechahora(RandomHelper.getRadomDateTime());
         oNewComentariojuegoEntity.setUsuario(oUsuarioService.getOneRandom());
         oNewComentariojuegoEntity.setJuego(oJuegoService.getOneRandom());
-        oNewComentariojuegoEntity.setComentariojuego(oComentariojuegoService.getOneRandomFromDatabase());
         return oNewComentariojuegoEntity;
     }
 
